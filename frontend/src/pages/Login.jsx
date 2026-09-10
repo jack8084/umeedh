@@ -1,5 +1,5 @@
 import React from "react";
-import "./messages.css";
+import "./messages.css"; 
 import { useForm } from "react-hook-form";
 import { usePageTitle } from '../Usepagetitle'
 
@@ -14,7 +14,7 @@ const Messagepage = () => {
 
   const onSubmit = async (data) => {
     try{
-    let r = await fetch(`${import.meta.env.VITE_API_URL}message`, {
+    let r = await fetch(`${import.meta.env.VITE_API_URL}/message`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -65,7 +65,7 @@ const Messagepage = () => {
               {errors.messages && (
                 <p className="error">{errors.messages.message}</p>
               )}
-              <button classname="cursor-pointer" type="submit">Submit</button>
+              <button className="cursor-pointer" type="submit">Submit</button>
             </form>
           </div>
         </div>
