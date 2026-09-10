@@ -1,52 +1,26 @@
-import { useEffect, useState } from "react";
+import React from 'react'
+import Navbar from './components/Navbar'
+import Body from './components/Body'
+import Notfound from './components/Notfound'
+import Homepage from './pages/Homepage'
+import Login from './pages/Login'
+import Questionspage from './pages/Questionspage'
+import Analysispage from './pages/Analysispage'
+import { Routes, Route } from 'react-router-dom'
 
-  async function getQuote() {
-    const response = await fetch(
-      "https://motivational-spark-api.vercel.app/api/quotes/random"
-    );
-
-    const data = await response.json();
-
-    console.log(data); // see what the API gives you
-    setQuote(data);
-  }
-
-import { useEffect, useState } from "react";
-
-function App() {
-    const [message, setMessage] = useState("");
-
-    useEffect(() => {
-        fetch("http://localhost:3000/")
-            .then(res => res.json())
-            .then(data => {
-                setMessage(data.message);
-            });
-
-        getQuote();
-
-    return (
-        <div>
-        <div>
-            <h1>Frontend</h1>
-            <p>{message}</p>
-        </div>
-        <div>
-              <h1>Random Quote</h1>
-
-              {quote && (
-                <div>
-                  <p>{quote.quote}</p>
-                  <p>— {quote.author}</p>
-                </div>
-              )}
-
-              <button onClick={getQuote}>
-                New Quote
-              </button>
-            </div>
-        </div>
-    );
+const App = () => {
+  return (
+    <div className="flex flex-col text-center justify-center items-center">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/questions" element={<Questionspage />} />
+        <Route path="/analysis" element={<Analysispage />} />
+        <Route path="*" element={<Notfound />} />
+      </Routes>
+    </div>
+  )
 }
-}
-export default App;
+
+export default App
